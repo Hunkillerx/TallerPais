@@ -13,6 +13,7 @@ package ean.programacionavanzada.pais
 
 import ean.programacionavanzada.pais.Utils.obtenerDepartamentos
 import ean.programacionavanzada.pais.Utils.obtenerMunicipios
+import org.apache.commons.lang3.builder.ToStringExclude
 import org.testng.Assert.assertEquals
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
@@ -54,8 +55,18 @@ internal class PaisTest {
     @Test
     fun test2() {
         val n = pais.numMunicipios()
-
         assertEquals(1122, n, "El numero de municipios esta mal!")
+    }
+
+    @Test
+    fun test33(){
+        val n = pais.numDepartamentos()
+        assertEquals(33,n)
+    }
+    @Test
+    fun test34(){
+        val n = pais.poblTotal("Amazonas")
+        assertEquals(74541,n)
     }
 
     @Test
@@ -79,32 +90,40 @@ internal class PaisTest {
     @Test
     fun test6() {
         // Poblacion de Antioquia
-        // TODO: Compruebe que la poblacion total de Antioquia es de 6600681
+        // TODO: Compruebe que la poblacion total de Antioquia es de 6299886
+        assertEquals(x,pais.poblTotal("Antioquia"))
     }
 
     @Test
     fun test7() {
         // Departamentos creados en la decada de los años 10
-        // TODO: Compruebe que hay 6 departamentos creados en la decada de los 10.
-        assertEquals(6, pais.deptosDecadaDiez())
+        var n = pais.deptosDecadaDiez()
+        assertEquals(4,n)
     }
 
     @Test
     fun test8(): Unit {
         // TODO: Después de obtener el departamento más grande, compruebe que el nombre es "Amazonas"
         // y que la superficie de ese departamento es 109665
-
+        var n = pais.deptMasGrande()
+        assertEquals("Amazonas",n)
     }
 
     @Test
     fun test9(): Unit {
         // Densidad del departamento del Quindío
-        var densidad = 0.0
+        var densidad = pais.densiPobla("Quindío")
         // TODO: Obtener aquí la densidad del departamento de Quindío
         // Y comprueba que su densidad es 309.1506 de la siguiente manera
 
         assertEquals(309.1506, densidad, 0.0001)
 
+    }
+
+    @Test
+    fun test10(){
+        var n = pais.munNoPoblaUrba()
+        assertEquals(0,n)
     }
 
 
